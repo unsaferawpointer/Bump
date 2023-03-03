@@ -43,6 +43,21 @@
 		4C8A316E2998EE6300A68038 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 4C8A316D2998EE6300A68038 /* README.md */; };
 		4CB0243929A911EF00FE34E2 /* BoardsScreen + InteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB0243829A911EF00FE34E2 /* BoardsScreen + InteractorTests.swift */; };
 		4CB0243B29A913CF00FE34E2 /* NetworkServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB0243A29A913CF00FE34E2 /* NetworkServiceMock.swift */; };
+		4CB0243E29A91EDB00FE34E2 /* ThreadsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB0243D29A91EDB00FE34E2 /* ThreadsScreen.swift */; };
+		4CB0244029A91F3C00FE34E2 /* ThreadsScreen + Presenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB0243F29A91F3C00FE34E2 /* ThreadsScreen + Presenter.swift */; };
+		4CB0244229A922AB00FE34E2 /* ThreadsScreen + CellModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB0244129A922AB00FE34E2 /* ThreadsScreen + CellModels.swift */; };
+		4CB0244429A9256100FE34E2 /* ThreadsScreen + ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB0244329A9256100FE34E2 /* ThreadsScreen + ViewController.swift */; };
+		4CB0244629A927F200FE34E2 /* ThreadsScreen + Interactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB0244529A927F200FE34E2 /* ThreadsScreen + Interactor.swift */; };
+		4CB0244A29A9E7A800FE34E2 /* ThreadsScreen + Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB0244929A9E7A800FE34E2 /* ThreadsScreen + Cell.swift */; };
+		4CB0244D29AA066900FE34E2 /* LabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB0244C29AA066900FE34E2 /* LabelView.swift */; };
+		4CB0244F29AA0E6400FE34E2 /* ThreadsScreen + CellConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB0244E29AA0E6400FE34E2 /* ThreadsScreen + CellConfiguration.swift */; };
+		4CB0245829AB780E00FE34E2 /* ThreadsScreen + PresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB0245729AB780E00FE34E2 /* ThreadsScreen + PresenterTests.swift */; };
+		4CB0245A29AB78B600FE34E2 /* ThreadsScreenViewControllerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB0245929AB78B600FE34E2 /* ThreadsScreenViewControllerMock.swift */; };
+		4CB0245C29AB7B4300FE34E2 /* ThreadsScreenInteractorMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB0245B29AB7B4300FE34E2 /* ThreadsScreenInteractorMock.swift */; };
+		4CB0245F29ABA76500FE34E2 /* ThreadsScreen + StringsFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB0245E29ABA76500FE34E2 /* ThreadsScreen + StringsFactory.swift */; };
+		4CB0246129ABBF8100FE34E2 /* ZeroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB0246029ABBF8100FE34E2 /* ZeroView.swift */; };
+		4CB0246329AE7B1600FE34E2 /* ThreadsScreen + PlaceholdersFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB0246229AE7B1600FE34E2 /* ThreadsScreen + PlaceholdersFactory.swift */; };
+		4CB0246A29B12A7200FE34E2 /* ThreadsScreenPlaceholdersFactoryMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB0246929B12A7200FE34E2 /* ThreadsScreenPlaceholdersFactoryMock.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -103,6 +118,21 @@
 		4C8A316D2998EE6300A68038 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		4CB0243829A911EF00FE34E2 /* BoardsScreen + InteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BoardsScreen + InteractorTests.swift"; sourceTree = "<group>"; };
 		4CB0243A29A913CF00FE34E2 /* NetworkServiceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServiceMock.swift; sourceTree = "<group>"; };
+		4CB0243D29A91EDB00FE34E2 /* ThreadsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadsScreen.swift; sourceTree = "<group>"; };
+		4CB0243F29A91F3C00FE34E2 /* ThreadsScreen + Presenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ThreadsScreen + Presenter.swift"; sourceTree = "<group>"; };
+		4CB0244129A922AB00FE34E2 /* ThreadsScreen + CellModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ThreadsScreen + CellModels.swift"; sourceTree = "<group>"; };
+		4CB0244329A9256100FE34E2 /* ThreadsScreen + ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ThreadsScreen + ViewController.swift"; sourceTree = "<group>"; };
+		4CB0244529A927F200FE34E2 /* ThreadsScreen + Interactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ThreadsScreen + Interactor.swift"; sourceTree = "<group>"; };
+		4CB0244929A9E7A800FE34E2 /* ThreadsScreen + Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ThreadsScreen + Cell.swift"; sourceTree = "<group>"; };
+		4CB0244C29AA066900FE34E2 /* LabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelView.swift; sourceTree = "<group>"; };
+		4CB0244E29AA0E6400FE34E2 /* ThreadsScreen + CellConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ThreadsScreen + CellConfiguration.swift"; sourceTree = "<group>"; };
+		4CB0245729AB780E00FE34E2 /* ThreadsScreen + PresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ThreadsScreen + PresenterTests.swift"; sourceTree = "<group>"; };
+		4CB0245929AB78B600FE34E2 /* ThreadsScreenViewControllerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadsScreenViewControllerMock.swift; sourceTree = "<group>"; };
+		4CB0245B29AB7B4300FE34E2 /* ThreadsScreenInteractorMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadsScreenInteractorMock.swift; sourceTree = "<group>"; };
+		4CB0245E29ABA76500FE34E2 /* ThreadsScreen + StringsFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ThreadsScreen + StringsFactory.swift"; sourceTree = "<group>"; };
+		4CB0246029ABBF8100FE34E2 /* ZeroView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZeroView.swift; sourceTree = "<group>"; };
+		4CB0246229AE7B1600FE34E2 /* ThreadsScreen + PlaceholdersFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ThreadsScreen + PlaceholdersFactory.swift"; sourceTree = "<group>"; };
+		4CB0246929B12A7200FE34E2 /* ThreadsScreenPlaceholdersFactoryMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadsScreenPlaceholdersFactoryMock.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,6 +163,7 @@
 		4C24B61329A404DE00015B1C /* Units */ = {
 			isa = PBXGroup;
 			children = (
+				4CB0243C29A91EBF00FE34E2 /* ThreadsScreen */,
 				4C24B61429A406F100015B1C /* BoardsScreen */,
 			);
 			path = Units;
@@ -154,6 +185,7 @@
 		4C24B62129A7699B00015B1C /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				4CB0244B29AA064A00FE34E2 /* Views */,
 				4C24B61F29A7699100015B1C /* ViewControllerOutput.swift */,
 			);
 			path = Core;
@@ -179,6 +211,7 @@
 		4C24B62D29A7D6A300015B1C /* Units */ = {
 			isa = PBXGroup;
 			children = (
+				4CB0245429AB715A00FE34E2 /* ThreadsScreen */,
 				4C24B62E29A7D6AB00015B1C /* BoardsScreen */,
 			);
 			path = Units;
@@ -243,16 +276,16 @@
 		4C8338E92995774500ABDAF2 /* Bump */ = {
 			isa = PBXGroup;
 			children = (
-				4C24B62229A785EC00015B1C /* Common */,
-				4C24B62129A7699B00015B1C /* Core */,
-				4C24B61329A404DE00015B1C /* Units */,
-				4C83391D29957FCF00ABDAF2 /* Services */,
+				4C8A316D2998EE6300A68038 /* README.md */,
 				4C8338EA2995774500ABDAF2 /* AppDelegate.swift */,
 				4C8338EC2995774500ABDAF2 /* SceneDelegate.swift */,
 				4C8338F62995774600ABDAF2 /* Assets.xcassets */,
 				4C8338FB2995774600ABDAF2 /* Info.plist */,
 				4C8338F32995774500ABDAF2 /* Bump.xcdatamodeld */,
-				4C8A316D2998EE6300A68038 /* README.md */,
+				4C83391D29957FCF00ABDAF2 /* Services */,
+				4C24B62229A785EC00015B1C /* Common */,
+				4C24B62129A7699B00015B1C /* Core */,
+				4C24B61329A404DE00015B1C /* Units */,
 			);
 			path = Bump;
 			sourceTree = "<group>";
@@ -350,6 +383,66 @@
 				4C83393F2997B4A300ABDAF2 /* CHFile.swift */,
 			);
 			path = "Response Models";
+			sourceTree = "<group>";
+		};
+		4CB0243C29A91EBF00FE34E2 /* ThreadsScreen */ = {
+			isa = PBXGroup;
+			children = (
+				4CB0243D29A91EDB00FE34E2 /* ThreadsScreen.swift */,
+				4CB0243F29A91F3C00FE34E2 /* ThreadsScreen + Presenter.swift */,
+				4CB0244129A922AB00FE34E2 /* ThreadsScreen + CellModels.swift */,
+				4CB0244329A9256100FE34E2 /* ThreadsScreen + ViewController.swift */,
+				4CB0244529A927F200FE34E2 /* ThreadsScreen + Interactor.swift */,
+				4CB0244929A9E7A800FE34E2 /* ThreadsScreen + Cell.swift */,
+				4CB0244E29AA0E6400FE34E2 /* ThreadsScreen + CellConfiguration.swift */,
+				4CB0246229AE7B1600FE34E2 /* ThreadsScreen + PlaceholdersFactory.swift */,
+				4CB0245D29ABA74F00FE34E2 /* Location */,
+			);
+			path = ThreadsScreen;
+			sourceTree = "<group>";
+		};
+		4CB0244B29AA064A00FE34E2 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				4CB0244C29AA066900FE34E2 /* LabelView.swift */,
+				4CB0246029ABBF8100FE34E2 /* ZeroView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		4CB0245429AB715A00FE34E2 /* ThreadsScreen */ = {
+			isa = PBXGroup;
+			children = (
+				4CB0245529AB716900FE34E2 /* Mocks */,
+				4CB0245629AB716F00FE34E2 /* Tests */,
+			);
+			path = ThreadsScreen;
+			sourceTree = "<group>";
+		};
+		4CB0245529AB716900FE34E2 /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				4CB0245929AB78B600FE34E2 /* ThreadsScreenViewControllerMock.swift */,
+				4CB0245B29AB7B4300FE34E2 /* ThreadsScreenInteractorMock.swift */,
+				4CB0246929B12A7200FE34E2 /* ThreadsScreenPlaceholdersFactoryMock.swift */,
+			);
+			path = Mocks;
+			sourceTree = "<group>";
+		};
+		4CB0245629AB716F00FE34E2 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				4CB0245729AB780E00FE34E2 /* ThreadsScreen + PresenterTests.swift */,
+			);
+			path = Tests;
+			sourceTree = "<group>";
+		};
+		4CB0245D29ABA74F00FE34E2 /* Location */ = {
+			isa = PBXGroup;
+			children = (
+				4CB0245E29ABA76500FE34E2 /* ThreadsScreen + StringsFactory.swift */,
+			);
+			path = Location;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -486,26 +579,37 @@
 				4C24B62429A785FF00015B1C /* AppTheme.swift in Sources */,
 				4C24B61629A4075700015B1C /* BoardsScreen.swift in Sources */,
 				4C833922299583D800ABDAF2 /* Request.swift in Sources */,
+				4CB0244029A91F3C00FE34E2 /* ThreadsScreen + Presenter.swift in Sources */,
 				4C8339452997B4A300ABDAF2 /* CHFile.swift in Sources */,
+				4CB0246129ABBF8100FE34E2 /* ZeroView.swift in Sources */,
 				4C8338F52995774500ABDAF2 /* Bump.xcdatamodeld in Sources */,
 				4C8339262996B72F00ABDAF2 /* HTTPMethod.swift in Sources */,
+				4CB0245F29ABA76500FE34E2 /* ThreadsScreen + StringsFactory.swift in Sources */,
 				4C83393129979FC100ABDAF2 /* BoardsEndpoint.swift in Sources */,
+				4CB0246329AE7B1600FE34E2 /* ThreadsScreen + PlaceholdersFactory.swift in Sources */,
+				4CB0244A29A9E7A800FE34E2 /* ThreadsScreen + Cell.swift in Sources */,
 				4C24B63C29A8998400015B1C /* ViewRepresentable.swift in Sources */,
 				4C8338EB2995774500ABDAF2 /* AppDelegate.swift in Sources */,
 				4C83393329979FE500ABDAF2 /* ThreadsEndpoint.swift in Sources */,
 				4C8339372997A07E00ABDAF2 /* ThumbnailEndpoint.swift in Sources */,
 				4C8339412997B4A300ABDAF2 /* CHThreadDetailResponse.swift in Sources */,
 				4C8339422997B4A300ABDAF2 /* CHThreadsResponse.swift in Sources */,
+				4CB0244F29AA0E6400FE34E2 /* ThreadsScreen + CellConfiguration.swift in Sources */,
 				4C24B61829A407EC00015B1C /* BoadrsScreen + Presenter.swift in Sources */,
 				4C8339352997A00300ABDAF2 /* PostsEndpoint.swift in Sources */,
+				4CB0243E29A91EDB00FE34E2 /* ThreadsScreen.swift in Sources */,
+				4CB0244D29AA066900FE34E2 /* LabelView.swift in Sources */,
 				4C24B62029A7699100015B1C /* ViewControllerOutput.swift in Sources */,
+				4CB0244229A922AB00FE34E2 /* ThreadsScreen + CellModels.swift in Sources */,
 				4C8339442997B4A300ABDAF2 /* CHBoard.swift in Sources */,
 				4C24B61C29A5405A00015B1C /* BoardsScreen + CellModels.swift in Sources */,
 				4C24B62B29A794DF00015B1C /* BoardsScreen + Interactor.swift in Sources */,
 				4C24B62829A78E9000015B1C /* BoardsScreen + StringsFactory.swift in Sources */,
+				4CB0244429A9256100FE34E2 /* ThreadsScreen + ViewController.swift in Sources */,
 				4C83392C2996BD1700ABDAF2 /* URLSessionFacade.swift in Sources */,
 				4C8338ED2995774500ABDAF2 /* SceneDelegate.swift in Sources */,
 				4C8339242995845A00ABDAF2 /* NetworkService.swift in Sources */,
+				4CB0244629A927F200FE34E2 /* ThreadsScreen + Interactor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -514,8 +618,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				4CB0243B29A913CF00FE34E2 /* NetworkServiceMock.swift in Sources */,
+				4CB0245829AB780E00FE34E2 /* ThreadsScreen + PresenterTests.swift in Sources */,
 				4C24B63929A7DDEF00015B1C /* BoardsScreenInteractorMock.swift in Sources */,
+				4CB0245C29AB7B4300FE34E2 /* ThreadsScreenInteractorMock.swift in Sources */,
+				4CB0246A29B12A7200FE34E2 /* ThreadsScreenPlaceholdersFactoryMock.swift in Sources */,
 				4C83392E2996CB3F00ABDAF2 /* URLSessionFacadeSpy.swift in Sources */,
+				4CB0245A29AB78B600FE34E2 /* ThreadsScreenViewControllerMock.swift in Sources */,
 				4CB0243929A911EF00FE34E2 /* BoardsScreen + InteractorTests.swift in Sources */,
 				4C24B63729A7DA9900015B1C /* BoardsScreenViewControllerMock.swift in Sources */,
 				4C24B63429A7D70A00015B1C /* BoardsScreen + PresenterTests.swift in Sources */,

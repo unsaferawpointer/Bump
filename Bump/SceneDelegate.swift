@@ -20,12 +20,18 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 		let window = UIWindow(windowScene: windowScene)
 
-		let navigationViewController = UINavigationController(rootViewController: BoardsScreen().toPresent())
-		navigationViewController.isNavigationBarHidden = false
-		navigationViewController.navigationBar.prefersLargeTitles = true
-		navigationViewController.navigationBar.barStyle = .default
+		let navigationController = UINavigationController(rootViewController: ThreadsScreen().build(board: nil, output: nil))
 
-		window.rootViewController = navigationViewController
+		let appearance = UINavigationBarAppearance()
+		appearance.configureWithDefaultBackground()
+
+		// Настройка нашего navigation bar
+		navigationController.navigationBar.tintColor = .white
+		navigationController.navigationBar.standardAppearance = appearance
+		navigationController.navigationBar.scrollEdgeAppearance = appearance
+
+
+		window.rootViewController = navigationController
 		self.window = window
 		window.makeKeyAndVisible()
 	}
