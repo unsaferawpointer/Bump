@@ -28,6 +28,7 @@ extension NetworkService: NetworkServiceProtocol {
 
 		let (data, response) = try await urlSession.data(for: request)
 
+		print("response \((response as? HTTPURLResponse)?.statusCode)")
 		guard let httpResponse = response as? HTTPURLResponse,
 			  (200...299).contains(httpResponse.statusCode) else {
 			throw Error.serverError

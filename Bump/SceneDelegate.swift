@@ -20,7 +20,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 		let window = UIWindow(windowScene: windowScene)
 
-		let navigationController = UINavigationController(rootViewController: ThreadsScreen().build(board: nil, output: nil))
+		let contentViewController = ThreadDetailScreen().build(
+			.init(boardIdentifier: "news", boardName: "News", thread: 14533033)
+		)
+
+		let navigationController = UINavigationController(rootViewController: contentViewController)
 
 		let appearance = UINavigationBarAppearance()
 		appearance.configureWithDefaultBackground()
