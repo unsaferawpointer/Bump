@@ -10,17 +10,21 @@ import UIKit
 extension ThreadDetailScreen {
 
 	/// Post cell configuration
-	struct CellConfiguration: Hashable {
+	struct CellConfiguration {
 
 		var number: Int = 0
 
 		var body: String = ""
+
+		var formattedBody: NSAttributedString = .init()
 
 		var likes: Int = 0
 
 		var dislikes: Int = 0
 
 		var date: Date = .init()
+
+		var linkAction: ((URL) -> Void)?
 	}
 }
 

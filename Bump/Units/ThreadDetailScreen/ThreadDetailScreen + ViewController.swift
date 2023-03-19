@@ -17,6 +17,8 @@ protocol ThreadDetailScreenViewOutput: ViewControllerOutput {
 /// Interface of the ThreadDetailScreen view
 protocol ThreadDetailScreenViewController: AnyObject {
 
+	typealias Snapshot = NSDiffableDataSourceSnapshot<String, ThreadDetailScreen.PostModel>
+
 	/// Start loading animation
 	func startProgressAnimation()
 
@@ -29,14 +31,17 @@ protocol ThreadDetailScreenViewController: AnyObject {
 	///    - title: Title of the ViewController
 	func configure(title: String)
 
-	/// Load snapshot
-	func load(_ snapshot: NSDiffableDataSourceSnapshot<String, ThreadDetailScreen.CellModel>)
-
-	/// configure ZeroView
+	/// Configure snasphot
 	///
 	/// - Parameters:
-	///    - model: Model of the ZeroView
-	func configurePlaceholder(model: ZeroViewModel?)
+	///    - snapshot: New snapshot
+	func configure(snapshot: Snapshot)
+
+	/// Scroll to specific post
+	///
+	/// - Parameters:
+	///    - postNumber: Number of the post
+	func scrollTo(postNumber: Int)
 }
 
 extension ThreadDetailScreen {
@@ -52,9 +57,11 @@ extension ThreadDetailScreen {
 
 			var content = ThreadDetailScreen.CellConfiguration()
 			content.body = model.body
+			content.formattedBody = model.formattedBody
 			content.likes = model.likes
 			content.dislikes = model.dislikes
 			content.number = model.id
+			content.linkAction = model.linkAction
 			cell.contentConfiguration = content
 		}
 
@@ -69,6 +76,7 @@ extension ThreadDetailScreen {
 			}))
 			let view = UICollectionView(frame: .zero, collectionViewLayout: layout)
 			view.refreshControl = refreshControl
+			view.allowsSelection = false
 			return view
 		}()
 
@@ -77,11 +85,6 @@ extension ThreadDetailScreen {
 			view.style = .medium
 			view.isHidden = false
 			view.hidesWhenStopped = true
-			return view
-		}()
-
-		private lazy var placeholderView: ZeroView = {
-			let view = ZeroView()
 			return view
 		}()
 
@@ -121,16 +124,21 @@ extension ThreadDetailScreen.ViewController {
 		super.viewWillAppear(animated)
 		presenter?.viewController(didChangeState: .willAppear)
 	}
+
+	override func viewDidDisappear(_ animated: Bool) {
+		super.viewDidDisappear(animated)
+		presenter?.viewController(didChangeState: .didDisappear)
+	}
 }
 
 // MARK: - Helpers
 extension ThreadDetailScreen.ViewController {
 
-	typealias CellModel = ThreadDetailScreen.CellModel
+	typealias CellModel = ThreadDetailScreen.PostModel
 
 	func configureConstraints() {
 
-		[collectionView, placeholderView, progressView].forEach {
+		[collectionView, progressView].forEach {
 			view.addSubview($0)
 			$0.translatesAutoresizingMaskIntoConstraints = false
 		}
@@ -143,12 +151,7 @@ extension ThreadDetailScreen.ViewController {
 				collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
 
 				progressView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-				progressView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-
-				placeholderView.topAnchor.constraint(equalTo: view.topAnchor),
-				placeholderView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-				placeholderView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-				placeholderView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+				progressView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
 			]
 		)
 	}
@@ -167,6 +170,12 @@ extension ThreadDetailScreen.ViewController {
 // MARK: - ThreadDetailScreenViewController
 extension ThreadDetailScreen.ViewController: ThreadDetailScreenViewController {
 
+	typealias Snapshot = NSDiffableDataSourceSnapshot<String, ThreadDetailScreen.PostModel>
+
+	func configure(snapshot: Snapshot) {
+		datasource.apply(snapshot)
+	}
+
 	func configure(title: String) {
 		self.title = title
 	}
@@ -182,20 +191,14 @@ extension ThreadDetailScreen.ViewController: ThreadDetailScreenViewController {
 		}
 	}
 
-	func load(_ snapshot: NSDiffableDataSourceSnapshot<String, ThreadDetailScreen.CellModel>) {
-		placeholderView.isHidden = true
-		datasource.apply(snapshot)
-		DispatchQueue.main.async {
-			self.collectionView.refreshControl?.endRefreshing()
-		}
-	}
-
-	func configurePlaceholder(model: ZeroViewModel?) {
-		guard let model else {
-			placeholderView.isHidden = true
+	func scrollTo(postNumber: Int) {
+		let snapshot = datasource.snapshot(for: "")
+		guard
+			let item = snapshot.items.first(where: { $0.id == postNumber } ),
+			let indexPath = datasource.indexPath(for: item)
+		else {
 			return
 		}
-		placeholderView.isHidden = false
-		placeholderView.model = model
+		collectionView.scrollToItem(at: indexPath, at: .top, animated: true)
 	}
 }

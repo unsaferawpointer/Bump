@@ -11,6 +11,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 	var window: UIWindow?
 
+	var coordinator: Coordinatable?
 
 	func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
 		// Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
@@ -18,26 +19,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 		// This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
 		guard let windowScene = (scene as? UIWindowScene) else { return }
 
-		let window = UIWindow(windowScene: windowScene)
+		window = UIWindow(windowScene: windowScene)
+		let navigationController = UINavigationController()
+		let router = Router(navigationController: navigationController)
+		window?.rootViewController = navigationController
+		window?.makeKeyAndVisible()
+		coordinator = Coordinator(router: router)
+		coordinator?.start()
 
-		let contentViewController = ThreadDetailScreen().build(
-			.init(boardIdentifier: "news", boardName: "News", thread: 14533033)
-		)
-
-		let navigationController = UINavigationController(rootViewController: contentViewController)
-
-		let appearance = UINavigationBarAppearance()
-		appearance.configureWithDefaultBackground()
-
-		// Настройка нашего navigation bar
-		navigationController.navigationBar.tintColor = .white
-		navigationController.navigationBar.standardAppearance = appearance
-		navigationController.navigationBar.scrollEdgeAppearance = appearance
-
-
-		window.rootViewController = navigationController
-		self.window = window
-		window.makeKeyAndVisible()
 	}
 
 	func sceneDidDisconnect(_ scene: UIScene) {
@@ -71,6 +60,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 		(UIApplication.shared.delegate as? AppDelegate)?.saveContext()
 	}
 
+	func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
+		print(#function)
+	}
 
 }
 

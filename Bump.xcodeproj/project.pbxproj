@@ -17,7 +17,6 @@
 		4C24B63429A7D70A00015B1C /* BoardsScreen + PresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C24B63329A7D70A00015B1C /* BoardsScreen + PresenterTests.swift */; };
 		4C24B63729A7DA9900015B1C /* BoardsScreenViewControllerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C24B63629A7DA9800015B1C /* BoardsScreenViewControllerMock.swift */; };
 		4C24B63929A7DDEF00015B1C /* BoardsScreenInteractorMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C24B63829A7DDEF00015B1C /* BoardsScreenInteractorMock.swift */; };
-		4C24B63C29A8998400015B1C /* ViewRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C24B63B29A8998400015B1C /* ViewRepresentable.swift */; };
 		4C24B63E29A8CA9D00015B1C /* FakeError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C24B63D29A8CA9D00015B1C /* FakeError.swift */; };
 		4C8338EB2995774500ABDAF2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C8338EA2995774500ABDAF2 /* AppDelegate.swift */; };
 		4C8338ED2995774500ABDAF2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C8338EC2995774500ABDAF2 /* SceneDelegate.swift */; };
@@ -66,12 +65,29 @@
 		4CB0248929BC71B200FE34E2 /* ToolbarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB0248829BC71B200FE34E2 /* ToolbarView.swift */; };
 		4CB0248D29BC95FC00FE34E2 /* ThreadDetailScreen + Presenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB0248C29BC95FC00FE34E2 /* ThreadDetailScreen + Presenter.swift */; };
 		4CB0248F29BC963A00FE34E2 /* ThreadDetailScreen + Interactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB0248E29BC963A00FE34E2 /* ThreadDetailScreen + Interactor.swift */; };
-		4CB0249129BC968200FE34E2 /* ThreadDetailScreen + PlaceholdersFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB0249029BC968200FE34E2 /* ThreadDetailScreen + PlaceholdersFactory.swift */; };
 		4CB0249429BC96D100FE34E2 /* ThreadDetailScreen + StringsFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB0249329BC96D100FE34E2 /* ThreadDetailScreen + StringsFactory.swift */; };
 		4CB0249B29BFB7D000FE34E2 /* ThreadDetailScreenViewControllerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB0249829BFB5E800FE34E2 /* ThreadDetailScreenViewControllerMock.swift */; };
 		4CB0249C29BFB7D300FE34E2 /* ThreadDetailScreenInteractorMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB0249A29BFB5E800FE34E2 /* ThreadDetailScreenInteractorMock.swift */; };
-		4CB0249D29BFB7D700FE34E2 /* ThreadDetailScreenPlaceholdersFactoryMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB0249929BFB5E800FE34E2 /* ThreadDetailScreenPlaceholdersFactoryMock.swift */; };
 		4CB0249F29BFBAFE00FE34E2 /* ThreadsScreen + PresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB0249E29BFBAFE00FE34E2 /* ThreadsScreen + PresenterTests.swift */; };
+		4CB024A129C0FAD700FE34E2 /* Coordinatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB024A029C0FAD700FE34E2 /* Coordinatable.swift */; };
+		4CB024A329C0FADC00FE34E2 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB024A229C0FADC00FE34E2 /* Router.swift */; };
+		4CB024A729C23C2500FE34E2 /* ThreadsScreen + Payload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB024A629C23C2500FE34E2 /* ThreadsScreen + Payload.swift */; };
+		4CB024B329C7160600FE34E2 /* CoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB024B229C7160600FE34E2 /* CoordinatorTests.swift */; };
+		4CB024B529C7166600FE34E2 /* RouterSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB024B429C7166600FE34E2 /* RouterSpy.swift */; };
+		4CB024BE29C7760200FE34E2 /* TextProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB024BD29C774AD00FE34E2 /* TextProcessor.swift */; };
+		4CB024C029C777D500FE34E2 /* NSMuttableAttributedString + Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB024BF29C777D500FE34E2 /* NSMuttableAttributedString + Extention.swift */; };
+		4CB024C229C8CB3600FE34E2 /* DeeplinkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB024C129C8CB3600FE34E2 /* DeeplinkManager.swift */; };
+		4CB024C429C8CC3400FE34E2 /* DeeplinkEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB024C329C8CC3400FE34E2 /* DeeplinkEndpoint.swift */; };
+		4CB024CA29CEFDBF00FE34E2 /* ThreadDetailScreen + Assembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB024C929CEFDBF00FE34E2 /* ThreadDetailScreen + Assembly.swift */; };
+		4CB024CC29D092FE00FE34E2 /* CoordinatableSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB024CB29D092FE00FE34E2 /* CoordinatableSpy.swift */; };
+		4CB024D229D0BFA400FE34E2 /* ViewRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB024D129D0BFA400FE34E2 /* ViewRepresentable.swift */; };
+		4CB024D529D1D67C00FE34E2 /* Routable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB024D429D1D67C00FE34E2 /* Routable.swift */; };
+		4CB024D829D1E78600FE34E2 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB024D729D1E78600FE34E2 /* Coordinator.swift */; };
+		4CB024E229D3531A00FE34E2 /* DeeplinkManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB024E129D3531A00FE34E2 /* DeeplinkManagerTests.swift */; };
+		4CB024E429D37AF600FE34E2 /* ThreadDetailScreen + InteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB024E329D37AF600FE34E2 /* ThreadDetailScreen + InteractorTests.swift */; };
+		4CB024E629D37C0C00FE34E2 /* ThreadDetailScreenInteractorOutputMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB024E529D37C0C00FE34E2 /* ThreadDetailScreenInteractorOutputMock.swift */; };
+		4CB024E829D3813B00FE34E2 /* DeeplinkManagerStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB024E729D3813B00FE34E2 /* DeeplinkManagerStub.swift */; };
+		4CB024EA29D3831A00FE34E2 /* ThreadDetailScreenOutputSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB024E929D3831A00FE34E2 /* ThreadDetailScreenOutputSpy.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -102,7 +118,6 @@
 		4C24B63329A7D70A00015B1C /* BoardsScreen + PresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BoardsScreen + PresenterTests.swift"; sourceTree = "<group>"; };
 		4C24B63629A7DA9800015B1C /* BoardsScreenViewControllerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardsScreenViewControllerMock.swift; sourceTree = "<group>"; };
 		4C24B63829A7DDEF00015B1C /* BoardsScreenInteractorMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardsScreenInteractorMock.swift; sourceTree = "<group>"; };
-		4C24B63B29A8998400015B1C /* ViewRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewRepresentable.swift; sourceTree = "<group>"; };
 		4C24B63D29A8CA9D00015B1C /* FakeError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeError.swift; sourceTree = "<group>"; };
 		4C8338E72995774500ABDAF2 /* Bump.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bump.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C8338EA2995774500ABDAF2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -155,12 +170,29 @@
 		4CB0248829BC71B200FE34E2 /* ToolbarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolbarView.swift; sourceTree = "<group>"; };
 		4CB0248C29BC95FC00FE34E2 /* ThreadDetailScreen + Presenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ThreadDetailScreen + Presenter.swift"; sourceTree = "<group>"; };
 		4CB0248E29BC963A00FE34E2 /* ThreadDetailScreen + Interactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ThreadDetailScreen + Interactor.swift"; sourceTree = "<group>"; };
-		4CB0249029BC968200FE34E2 /* ThreadDetailScreen + PlaceholdersFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ThreadDetailScreen + PlaceholdersFactory.swift"; sourceTree = "<group>"; };
 		4CB0249329BC96D100FE34E2 /* ThreadDetailScreen + StringsFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ThreadDetailScreen + StringsFactory.swift"; sourceTree = "<group>"; };
 		4CB0249829BFB5E800FE34E2 /* ThreadDetailScreenViewControllerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadDetailScreenViewControllerMock.swift; sourceTree = "<group>"; };
-		4CB0249929BFB5E800FE34E2 /* ThreadDetailScreenPlaceholdersFactoryMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadDetailScreenPlaceholdersFactoryMock.swift; sourceTree = "<group>"; };
 		4CB0249A29BFB5E800FE34E2 /* ThreadDetailScreenInteractorMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadDetailScreenInteractorMock.swift; sourceTree = "<group>"; };
 		4CB0249E29BFBAFE00FE34E2 /* ThreadsScreen + PresenterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ThreadsScreen + PresenterTests.swift"; sourceTree = "<group>"; };
+		4CB024A029C0FAD700FE34E2 /* Coordinatable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Coordinatable.swift; sourceTree = "<group>"; };
+		4CB024A229C0FADC00FE34E2 /* Router.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
+		4CB024A629C23C2500FE34E2 /* ThreadsScreen + Payload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ThreadsScreen + Payload.swift"; sourceTree = "<group>"; };
+		4CB024B229C7160600FE34E2 /* CoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinatorTests.swift; sourceTree = "<group>"; };
+		4CB024B429C7166600FE34E2 /* RouterSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouterSpy.swift; sourceTree = "<group>"; };
+		4CB024BD29C774AD00FE34E2 /* TextProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextProcessor.swift; sourceTree = "<group>"; };
+		4CB024BF29C777D500FE34E2 /* NSMuttableAttributedString + Extention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSMuttableAttributedString + Extention.swift"; sourceTree = "<group>"; };
+		4CB024C129C8CB3600FE34E2 /* DeeplinkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeeplinkManager.swift; sourceTree = "<group>"; };
+		4CB024C329C8CC3400FE34E2 /* DeeplinkEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeeplinkEndpoint.swift; sourceTree = "<group>"; };
+		4CB024C929CEFDBF00FE34E2 /* ThreadDetailScreen + Assembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ThreadDetailScreen + Assembly.swift"; sourceTree = "<group>"; };
+		4CB024CB29D092FE00FE34E2 /* CoordinatableSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinatableSpy.swift; sourceTree = "<group>"; };
+		4CB024D129D0BFA400FE34E2 /* ViewRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewRepresentable.swift; sourceTree = "<group>"; };
+		4CB024D429D1D67C00FE34E2 /* Routable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Routable.swift; sourceTree = "<group>"; };
+		4CB024D729D1E78600FE34E2 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		4CB024E129D3531A00FE34E2 /* DeeplinkManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeeplinkManagerTests.swift; sourceTree = "<group>"; };
+		4CB024E329D37AF600FE34E2 /* ThreadDetailScreen + InteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ThreadDetailScreen + InteractorTests.swift"; sourceTree = "<group>"; };
+		4CB024E529D37C0C00FE34E2 /* ThreadDetailScreenInteractorOutputMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadDetailScreenInteractorOutputMock.swift; sourceTree = "<group>"; };
+		4CB024E729D3813B00FE34E2 /* DeeplinkManagerStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeeplinkManagerStub.swift; sourceTree = "<group>"; };
+		4CB024E929D3831A00FE34E2 /* ThreadDetailScreenOutputSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadDetailScreenOutputSpy.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -223,8 +255,8 @@
 			isa = PBXGroup;
 			children = (
 				4C24B62329A785FF00015B1C /* AppTheme.swift */,
-				4C24B63B29A8998400015B1C /* ViewRepresentable.swift */,
 				4C24B61F29A7699100015B1C /* ViewControllerOutput.swift */,
+				4CB024D129D0BFA400FE34E2 /* ViewRepresentable.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -261,6 +293,9 @@
 			children = (
 				4C24B63D29A8CA9D00015B1C /* FakeError.swift */,
 				4CB0243A29A913CF00FE34E2 /* NetworkServiceMock.swift */,
+				4CB024B429C7166600FE34E2 /* RouterSpy.swift */,
+				4CB024CB29D092FE00FE34E2 /* CoordinatableSpy.swift */,
+				4CB024E729D3813B00FE34E2 /* DeeplinkManagerStub.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -315,6 +350,7 @@
 				4C83391D29957FCF00ABDAF2 /* Services */,
 				4C24B62229A785EC00015B1C /* Common */,
 				4C24B62129A7699B00015B1C /* Core */,
+				4CB024D629D1E74700FE34E2 /* Flows */,
 				4C24B61329A404DE00015B1C /* Units */,
 			);
 			path = Bump;
@@ -324,6 +360,7 @@
 			isa = PBXGroup;
 			children = (
 				4C24B62F29A7D6C900015B1C /* Mocks */,
+				4CB024B029C715AB00FE34E2 /* Common */,
 				4C24B62D29A7D6A300015B1C /* Units */,
 				4C8339272996B7C300ABDAF2 /* Services */,
 			);
@@ -342,6 +379,7 @@
 		4C83391D29957FCF00ABDAF2 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				4CB024BC29C7747F00FE34E2 /* TextProcessing */,
 				4C83391E29957FDD00ABDAF2 /* Networking */,
 			);
 			path = Services;
@@ -419,6 +457,7 @@
 			isa = PBXGroup;
 			children = (
 				4CB0243D29A91EDB00FE34E2 /* ThreadsScreen.swift */,
+				4CB024A629C23C2500FE34E2 /* ThreadsScreen + Payload.swift */,
 				4CB0243F29A91F3C00FE34E2 /* ThreadsScreen + Presenter.swift */,
 				4CB0244129A922AB00FE34E2 /* ThreadsScreen + CellModels.swift */,
 				4CB0244329A9256100FE34E2 /* ThreadsScreen + ViewController.swift */,
@@ -480,13 +519,13 @@
 			isa = PBXGroup;
 			children = (
 				4CB0247C29BC646900FE34E2 /* ThreadDetailScreen.swift */,
+				4CB024C929CEFDBF00FE34E2 /* ThreadDetailScreen + Assembly.swift */,
 				4CB0247E29BC64AB00FE34E2 /* ThreadDetailScreen + ViewController.swift */,
 				4CB0248029BC668900FE34E2 /* ThreadDetailScreen + CellModel.swift */,
 				4CB0248229BC683E00FE34E2 /* ThreadDetailScreen + CellConfiguration.swift */,
 				4CB0248429BC686700FE34E2 /* ThreadDetailScreen + Cell.swift */,
 				4CB0248C29BC95FC00FE34E2 /* ThreadDetailScreen + Presenter.swift */,
 				4CB0248E29BC963A00FE34E2 /* ThreadDetailScreen + Interactor.swift */,
-				4CB0249029BC968200FE34E2 /* ThreadDetailScreen + PlaceholdersFactory.swift */,
 				4CB0249229BC96B500FE34E2 /* Location */,
 			);
 			path = ThreadDetailScreen;
@@ -514,7 +553,8 @@
 			children = (
 				4CB0249829BFB5E800FE34E2 /* ThreadDetailScreenViewControllerMock.swift */,
 				4CB0249A29BFB5E800FE34E2 /* ThreadDetailScreenInteractorMock.swift */,
-				4CB0249929BFB5E800FE34E2 /* ThreadDetailScreenPlaceholdersFactoryMock.swift */,
+				4CB024E529D37C0C00FE34E2 /* ThreadDetailScreenInteractorOutputMock.swift */,
+				4CB024E929D3831A00FE34E2 /* ThreadDetailScreenOutputSpy.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -523,8 +563,56 @@
 			isa = PBXGroup;
 			children = (
 				4CB0245729AB780E00FE34E2 /* ThreadDetailScreen + PresenterTests.swift */,
+				4CB024E329D37AF600FE34E2 /* ThreadDetailScreen + InteractorTests.swift */,
 			);
 			path = Tests;
+			sourceTree = "<group>";
+		};
+		4CB024B029C715AB00FE34E2 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				4CB024B129C715B400FE34E2 /* Tests */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		4CB024B129C715B400FE34E2 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				4CB024B229C7160600FE34E2 /* CoordinatorTests.swift */,
+				4CB024E129D3531A00FE34E2 /* DeeplinkManagerTests.swift */,
+			);
+			path = Tests;
+			sourceTree = "<group>";
+		};
+		4CB024BC29C7747F00FE34E2 /* TextProcessing */ = {
+			isa = PBXGroup;
+			children = (
+				4CB024C329C8CC3400FE34E2 /* DeeplinkEndpoint.swift */,
+				4CB024C129C8CB3600FE34E2 /* DeeplinkManager.swift */,
+				4CB024BD29C774AD00FE34E2 /* TextProcessor.swift */,
+				4CB024BF29C777D500FE34E2 /* NSMuttableAttributedString + Extention.swift */,
+			);
+			path = TextProcessing;
+			sourceTree = "<group>";
+		};
+		4CB024D329D1D66100FE34E2 /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				4CB024A229C0FADC00FE34E2 /* Router.swift */,
+				4CB024D429D1D67C00FE34E2 /* Routable.swift */,
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
+		4CB024D629D1E74700FE34E2 /* Flows */ = {
+			isa = PBXGroup;
+			children = (
+				4CB024D329D1D66100FE34E2 /* Router */,
+				4CB024A029C0FAD700FE34E2 /* Coordinatable.swift */,
+				4CB024D729D1E78600FE34E2 /* Coordinator.swift */,
+			);
+			path = Flows;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -664,22 +752,29 @@
 				4CB0244029A91F3C00FE34E2 /* ThreadsScreen + Presenter.swift in Sources */,
 				4C8339452997B4A300ABDAF2 /* CHFile.swift in Sources */,
 				4CB0246129ABBF8100FE34E2 /* ZeroView.swift in Sources */,
+				4CB024D229D0BFA400FE34E2 /* ViewRepresentable.swift in Sources */,
 				4C8338F52995774500ABDAF2 /* Bump.xcdatamodeld in Sources */,
+				4CB024A729C23C2500FE34E2 /* ThreadsScreen + Payload.swift in Sources */,
 				4CB0248529BC686700FE34E2 /* ThreadDetailScreen + Cell.swift in Sources */,
 				4C8339262996B72F00ABDAF2 /* HTTPMethod.swift in Sources */,
 				4CB0248329BC683E00FE34E2 /* ThreadDetailScreen + CellConfiguration.swift in Sources */,
 				4CB0245F29ABA76500FE34E2 /* ThreadsScreen + StringsFactory.swift in Sources */,
+				4CB024BE29C7760200FE34E2 /* TextProcessor.swift in Sources */,
 				4C83393129979FC100ABDAF2 /* BoardsEndpoint.swift in Sources */,
 				4CB0246329AE7B1600FE34E2 /* ThreadsScreen + PlaceholdersFactory.swift in Sources */,
 				4CB0244A29A9E7A800FE34E2 /* ThreadsScreen + Cell.swift in Sources */,
-				4C24B63C29A8998400015B1C /* ViewRepresentable.swift in Sources */,
+				4CB024C229C8CB3600FE34E2 /* DeeplinkManager.swift in Sources */,
 				4C8338EB2995774500ABDAF2 /* AppDelegate.swift in Sources */,
-				4CB0249129BC968200FE34E2 /* ThreadDetailScreen + PlaceholdersFactory.swift in Sources */,
+				4CB024C029C777D500FE34E2 /* NSMuttableAttributedString + Extention.swift in Sources */,
+				4CB024C429C8CC3400FE34E2 /* DeeplinkEndpoint.swift in Sources */,
 				4C83393329979FE500ABDAF2 /* ThreadsEndpoint.swift in Sources */,
 				4C8339372997A07E00ABDAF2 /* ThumbnailEndpoint.swift in Sources */,
 				4C8339412997B4A300ABDAF2 /* CHThreadDetailResponse.swift in Sources */,
 				4CB0247D29BC646900FE34E2 /* ThreadDetailScreen.swift in Sources */,
+				4CB024CA29CEFDBF00FE34E2 /* ThreadDetailScreen + Assembly.swift in Sources */,
 				4CB0248D29BC95FC00FE34E2 /* ThreadDetailScreen + Presenter.swift in Sources */,
+				4CB024D529D1D67C00FE34E2 /* Routable.swift in Sources */,
+				4CB024A329C0FADC00FE34E2 /* Router.swift in Sources */,
 				4C8339422997B4A300ABDAF2 /* CHThreadsResponse.swift in Sources */,
 				4CB0248129BC668900FE34E2 /* ThreadDetailScreen + CellModel.swift in Sources */,
 				4CB0244F29AA0E6400FE34E2 /* ThreadsScreen + CellConfiguration.swift in Sources */,
@@ -688,10 +783,12 @@
 				4CB0243E29A91EDB00FE34E2 /* ThreadsScreen.swift in Sources */,
 				4CB0244D29AA066900FE34E2 /* LabelView.swift in Sources */,
 				4C24B62029A7699100015B1C /* ViewControllerOutput.swift in Sources */,
+				4CB024A129C0FAD700FE34E2 /* Coordinatable.swift in Sources */,
 				4CB0244229A922AB00FE34E2 /* ThreadsScreen + CellModels.swift in Sources */,
 				4C8339442997B4A300ABDAF2 /* CHBoard.swift in Sources */,
 				4C24B61C29A5405A00015B1C /* BoardsScreen + CellModels.swift in Sources */,
 				4CB0247F29BC64AB00FE34E2 /* ThreadDetailScreen + ViewController.swift in Sources */,
+				4CB024D829D1E78600FE34E2 /* Coordinator.swift in Sources */,
 				4CB0248929BC71B200FE34E2 /* ToolbarView.swift in Sources */,
 				4C24B62B29A794DF00015B1C /* BoardsScreen + Interactor.swift in Sources */,
 				4CB0248F29BC963A00FE34E2 /* ThreadDetailScreen + Interactor.swift in Sources */,
@@ -714,17 +811,24 @@
 				4CB0245829AB780E00FE34E2 /* ThreadDetailScreen + PresenterTests.swift in Sources */,
 				4C24B63929A7DDEF00015B1C /* BoardsScreenInteractorMock.swift in Sources */,
 				4CB0249B29BFB7D000FE34E2 /* ThreadDetailScreenViewControllerMock.swift in Sources */,
+				4CB024B529C7166600FE34E2 /* RouterSpy.swift in Sources */,
 				4CB0245C29AB7B4300FE34E2 /* ThreadsScreenInteractorMock.swift in Sources */,
+				4CB024CC29D092FE00FE34E2 /* CoordinatableSpy.swift in Sources */,
 				4CB0249C29BFB7D300FE34E2 /* ThreadDetailScreenInteractorMock.swift in Sources */,
 				4CB0246A29B12A7200FE34E2 /* ThreadsScreenPlaceholdersFactoryMock.swift in Sources */,
 				4C83392E2996CB3F00ABDAF2 /* URLSessionFacadeSpy.swift in Sources */,
+				4CB024E629D37C0C00FE34E2 /* ThreadDetailScreenInteractorOutputMock.swift in Sources */,
 				4CB0245A29AB78B600FE34E2 /* ThreadsScreenViewControllerMock.swift in Sources */,
+				4CB024EA29D3831A00FE34E2 /* ThreadDetailScreenOutputSpy.swift in Sources */,
 				4CB0243929A911EF00FE34E2 /* BoardsScreen + InteractorTests.swift in Sources */,
-				4CB0249D29BFB7D700FE34E2 /* ThreadDetailScreenPlaceholdersFactoryMock.swift in Sources */,
 				4C24B63729A7DA9900015B1C /* BoardsScreenViewControllerMock.swift in Sources */,
+				4CB024E229D3531A00FE34E2 /* DeeplinkManagerTests.swift in Sources */,
 				4C24B63429A7D70A00015B1C /* BoardsScreen + PresenterTests.swift in Sources */,
 				4C83392A2996B80600ABDAF2 /* NetworkServiceTests.swift in Sources */,
 				4C24B63E29A8CA9D00015B1C /* FakeError.swift in Sources */,
+				4CB024E829D3813B00FE34E2 /* DeeplinkManagerStub.swift in Sources */,
+				4CB024B329C7160600FE34E2 /* CoordinatorTests.swift in Sources */,
+				4CB024E429D37AF600FE34E2 /* ThreadDetailScreen + InteractorTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -30,7 +30,7 @@ extension BoardsScreen {
 
 		var interactor: BoardsScreenInteractor?
 
-		var output: BoardsScreenOutput?
+		weak var output: BoardsScreenOutput?
 
 		/// Only for testing
 		private (set) var loadingTask: Task<Void, Never>?
@@ -42,7 +42,7 @@ extension BoardsScreen {
 		/// - Parameters:
 		///    - output: Output of the unit
 		///    - stringsFactory: Storage of the localized strings
-		init(output: BoardsScreenOutput? = nil,
+		init(output: BoardsScreenOutput,
 			 stringsFactory: BoardsScreenStringsFactory = BoardsScreen.StringsFactory()) {
 			self.output = output
 			self.stringsFactory = stringsFactory
@@ -75,7 +75,7 @@ extension BoardsScreen.Presenter: BoardsScreenViewOutput {
 	}
 
 	func didSelect(_ identifier: String) {
-		output?.userSelectBoard(identifier: identifier)
+		output?.unitInvockedAction(.userSelectedBoard(identifier))
 	}
 }
 

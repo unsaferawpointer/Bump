@@ -16,15 +16,15 @@ final class ThreadsScreenPresenterTests: XCTestCase {
 
 	var interactor: ThreadsScreenInteractorMock!
 
-	var output: ThreadsScreenOutputMock!
-
 	var placeholdersFactory: ThreadsScreenPlaceholdersFactoryMock!
+
+	var output: ThreadsScreenOutputSpy!
 
 	override func setUpWithError() throws {
 
-		output = ThreadsScreenOutputMock()
+		output = ThreadsScreenOutputSpy()
 
-		sut = ThreadsScreen.Presenter(output: output)
+		sut = ThreadsScreen.Presenter(.init(boardIdentifier: "news"), output: output)
 
 		interactor = ThreadsScreenInteractorMock()
 		sut.interactor = interactor
@@ -54,8 +54,8 @@ extension ThreadsScreenPresenterTests {
 		interactor.error = nil
 		interactor.threadsResponseStub = makeThreadsResponse()
 
-		let board = makeBoard(id: "news", name: "News", category: "Politics")
-		sut = ThreadsScreen.Presenter(board: board, output: output)
+		let payload = ThreadsScreen.Payload(boardIdentifier: "news")
+		sut = ThreadsScreen.Presenter(payload, output: output)
 		sut.interactor = interactor
 		sut.view = view
 
@@ -68,7 +68,7 @@ extension ThreadsScreenPresenterTests {
 		guard case let .configure(title) = view.invocations[0] else {
 			return XCTFail("`configure` must be invocked")
 		}
-		XCTAssertEqual(title, sut.board?.name)
+		XCTAssertEqual(title, "news")
 
 		guard case .startProgressAnimation = view.invocations[1] else {
 			return XCTFail("`startProgressAnimation` must be invocked")
@@ -97,7 +97,7 @@ extension ThreadsScreenPresenterTests {
 		interactor.error = nil
 		interactor.threadsResponseStub = makeThreadsResponse()
 
-		sut = ThreadsScreen.Presenter(board: nil, output: output)
+		sut = ThreadsScreen.Presenter(nil, output: output)
 		sut.interactor = interactor
 		sut.view = view
 
@@ -131,8 +131,8 @@ extension ThreadsScreenPresenterTests {
 		interactor.error = FakeError()
 		interactor.threadsResponseStub = nil
 
-		let board = makeBoard(id: "news", name: "News", category: "Politics")
-		sut = ThreadsScreen.Presenter(board: board, output: output)
+		let payload = ThreadsScreen.Payload(boardIdentifier: "news")
+		sut = ThreadsScreen.Presenter(payload, output: output)
 		sut.interactor = interactor
 		sut.view = view
 
@@ -145,7 +145,7 @@ extension ThreadsScreenPresenterTests {
 		guard case let .configure(title) = view.invocations[0] else {
 			return XCTFail("`configure` must be invocked")
 		}
-		XCTAssertEqual(title, sut.board?.name)
+		XCTAssertEqual(title, "news")
 
 		guard case .startProgressAnimation = view.invocations[1] else {
 			return XCTFail("`startProgressAnimation` must be invocked")
@@ -175,8 +175,8 @@ extension ThreadsScreenPresenterTests {
 		interactor.error = FakeError()
 		interactor.threadsResponseStub = nil
 
-		let board = makeBoard(id: "news", name: "News", category: "Politics")
-		sut = ThreadsScreen.Presenter(board: board, output: output)
+		let payload = ThreadsScreen.Payload(boardIdentifier: "news")
+		sut = ThreadsScreen.Presenter(payload, output: output)
 		sut.interactor = interactor
 		sut.view = view
 
@@ -194,16 +194,25 @@ extension ThreadsScreenPresenterTests {
 	}
 
 	func testDidSelect() async throws {
+		// Arrange
+		let payload = ThreadsScreen.Payload(boardIdentifier: "news")
+		sut = ThreadsScreen.Presenter(payload, output: output)
+		sut.threads = [.init(num: 0, board: "news", timestamp: 9999999)]
 
 		// Act
 		sut.didSelect(0)
 
 		// Assert
-		guard case let .userSelectThread(identifier) = output.invocations[0] else {
-			return XCTFail("`userSelectBoard` must be invocked")
+		guard case let .unitInvockedAction(action) = output.invocations[0] else {
+			return XCTFail("`unitInvockedAction` must be invocked")
 		}
 
-		XCTAssertEqual(identifier, 0)
+		guard case let .userSelectedThread(board, thread) = action else {
+			return XCTFail("`userSelectedThread` must be invocked")
+		}
+
+		XCTAssertEqual(thread, 0)
+		XCTAssertEqual(board, "news")
 	}
 }
 
@@ -235,16 +244,16 @@ extension ThreadsScreenPresenterTests {
 // MARK: - Nested data structs
 extension ThreadsScreenPresenterTests {
 
-	final class ThreadsScreenOutputMock: ThreadsScreenOutput {
+	final class ThreadsScreenOutputSpy: ThreadsScreenOutput {
 
 		var invocations: [Action] = []
 
-		func userSelectThread(identifier: Int) {
-			invocations.append(.userSelectThread(identifier: identifier))
+		enum Action {
+			case unitInvockedAction(_ action: ThreadsScreen.Action)
 		}
 
-		enum Action {
-			case userSelectThread(identifier: Int)
+		func unitInvockedAction(_ action: ThreadsScreen.Action) {
+			invocations.append(.unitInvockedAction(action))
 		}
 	}
 }

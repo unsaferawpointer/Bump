@@ -16,11 +16,9 @@ final class ThreadDetailScreenPresenterTests: XCTestCase {
 
 	private var interactor: ThreadDetailScreenInteractorMock!
 
-	private var placeholdersFactory: ThreadDetailScreenPlaceholdersFactoryMock!
-
 	override func setUpWithError() throws {
 
-		sut = ThreadDetailScreen.Presenter(nil)
+		sut = ThreadDetailScreen.Presenter()
 
 		interactor = ThreadDetailScreenInteractorMock()
 		sut.interactor = interactor
@@ -28,219 +26,130 @@ final class ThreadDetailScreenPresenterTests: XCTestCase {
 		view = ThreadDetailScreenViewControllerMock()
 		sut.view = view
 
-		placeholdersFactory = ThreadDetailScreenPlaceholdersFactoryMock()
-		sut.placeholdersFactory = placeholdersFactory
 	}
 
 	override func tearDownWithError() throws {
 		sut = nil
 		view = nil
 		interactor = nil
-		placeholdersFactory = nil
 	}
-
 }
 
 // MARK: - ThreadDetailScreenViewOutput cases
 extension ThreadDetailScreenPresenterTests {
 
-	func testViewControllerDidChangeStateWhenStateIsDidLoad() async throws {
+	func testViewControllerDidChangeStateWhenStateIsDidLoad() {
 		// Arrange
-		interactor.error = nil
-		interactor.threadDetailResponseStub = makeThreadDetailResponse()
-
-		let payload = makePayload(boardIdentifier: "news", boardName: "News", thread: 124869)
-		sut = ThreadDetailScreen.Presenter(payload)
-		sut.interactor = interactor
-		sut.view = view
+		sut.title = UUID().uuidString
 
 		// Act
 		sut.viewController(didChangeState: .didLoad)
-		let _ = await sut.loadingTask?.result
 
 		// Assert
-		guard case let .configure(title) = view.invocations[0] else {
-			return XCTFail("`configure` must be invocked")
-		}
-		XCTAssertEqual(title, payload.boardName)
-
-		guard case .startProgressAnimation = view.invocations[1] else {
-			return XCTFail("`startProgressAnimation` must be invocked")
+		guard case .fetchThreads = interactor.invocations[0] else {
+			return XCTFail("`fetchThreads` must be invocked")
 		}
 
-		guard case .stopProgressAnimation = view.invocations[2] else {
+		guard case let .configureTitle(title) = view.invocations[0] else {
+			return XCTFail("`configureTitle` must be invocked")
+		}
+		XCTAssertEqual(title, sut.title)
+	}
+
+	func testViewControllerDidChangeStateWhenStateIsDidDisappear() {
+		// Act
+		sut.viewController(didChangeState: .didDisappear)
+
+		// Assert
+		guard case .cancelFetching = interactor.invocations[0] else {
+			return XCTFail("`cancelFetching` must be invocked")
+		}
+	}
+
+	func testViewControllerRefreshData() {
+		// Act
+		sut.refreshData()
+
+		// Assert
+		guard case .fetchThreads = interactor.invocations[0] else {
+			return XCTFail("`fetchThreads` must be invocked")
+		}
+	}
+}
+
+// MARK: - ThreadDetailScreenInteractorOutput test-cases
+extension ThreadDetailScreenPresenterTests {
+
+	func testReload() async {
+		// Arrange
+		let models = makeModels()
+
+		// Act
+		sut.reload(models)
+
+		// Assert
+		guard case .stopProgressAnimation = view.invocations[0] else {
 			return XCTFail("`stopProgressAnimation` must be invocked")
 		}
 
-		guard case let .load(snapshot) = view.invocations[3] else {
-			return XCTFail("`load` must be invocked")
+		guard case let.configureSnapshot(snapshot) = view.invocations[1] else {
+			return XCTFail("`stopProgressAnimation` must be invocked")
 		}
 
-		XCTAssertEqual(snapshot.numberOfSections, 1)
 		XCTAssertEqual(snapshot.numberOfItems, 4)
-
-		guard case let .configurePlaceholder(model) = view.invocations[4] else {
-			return XCTFail("`configurePlaceholder` must be invocked")
-		}
-
-		XCTAssertNil(model)
+		XCTAssertEqual(snapshot.numberOfSections, 1)
+		XCTAssertEqual(view.invocations.count, 2)
 	}
 
-	func testViewControllerDidChangeStateWhenSelectionIsEmpty() async throws {
-		// Arrange
-		interactor.error = nil
-		interactor.threadDetailResponseStub = makeThreadDetailResponse()
-
-		sut = ThreadDetailScreen.Presenter(nil)
-		sut.interactor = interactor
-		sut.view = view
-
+	func testPerformTransition(to post: Int) {
 		// Act
-		sut.viewController(didChangeState: .didLoad)
-		let _ = await sut.loadingTask?.result
+		sut.performTransition(to: 0)
 
 		// Assert
-		guard case let .configure(title) = view.invocations[0] else {
-			return XCTFail("`configure` must be invocked")
+		guard case let .scrollTo(postNumber) = view.invocations[0] else {
+			return XCTFail("`scrollTo` must be invocked")
 		}
-		XCTAssertEqual(title, "")
-
-		guard case let .load(snapshot) = view.invocations[1] else {
-			return XCTFail("`load` must be invocked")
-		}
-
-		XCTAssertEqual(snapshot.numberOfSections, 0)
-		XCTAssertEqual(snapshot.numberOfItems, 0)
-
-		guard case let .configurePlaceholder(model) = view.invocations[2] else {
-			return XCTFail("`configurePlaceholder` must be invocked")
-		}
-
-		XCTAssertNotNil(model)
+		XCTAssertEqual(postNumber, 0)
 	}
 
-	func testViewControllerDidChangeStateWhenStateIsDidLoadWhenErrorHasOccured() async throws {
-		// Arrange
-		interactor.error = FakeError()
-		interactor.threadDetailResponseStub = nil
-
-		let payload = makePayload(boardIdentifier: "news", boardName: "News", thread: 124869)
-		sut = ThreadDetailScreen.Presenter(payload)
-		sut.interactor = interactor
-		sut.view = view
-
+	func testStartLoading() {
 		// Act
-		sut.viewController(didChangeState: .didLoad)
-		let _ = await sut.loadingTask?.result
+		sut.startLoading()
 
 		// Assert
-
-		guard case let .configure(title) = view.invocations[0] else {
-			return XCTFail("`configure` must be invocked")
-		}
-		XCTAssertEqual(title, payload.boardName)
-
-		guard case .startProgressAnimation = view.invocations[1] else {
+		guard case .startProgressAnimation = view.invocations[0] else {
 			return XCTFail("`startProgressAnimation` must be invocked")
 		}
-
-		guard case .stopProgressAnimation = view.invocations[2] else {
-			return XCTFail("`stopProgressAnimation` must be invocked")
-		}
-
-		guard case let .load(snapshot) = view.invocations[3] else {
-			return XCTFail("`load` must be invocked")
-		}
-
-		XCTAssertEqual(snapshot.numberOfSections, 0)
-		XCTAssertEqual(snapshot.numberOfItems, 0)
-
-		guard case let .configurePlaceholder(model) = view.invocations[4] else {
-			return XCTFail("`configurePlaceholder` must be invocked")
-		}
-
-		XCTAssertNotNil(model)
 	}
 
-	func testTouchUpInsideZeroScreenButton() async throws {
-		// Arrange
-		interactor.error = FakeError()
-		interactor.threadDetailResponseStub = nil
-
-		let payload = makePayload(boardIdentifier: "news", boardName: "News", thread: 124869)
-		sut = ThreadDetailScreen.Presenter(payload)
-		sut.interactor = interactor
-		sut.view = view
-
-		sut.viewController(didChangeState: .didLoad)
-		let _ = await sut.loadingTask?.result
-
-		guard case let .configurePlaceholder(model) = view.invocations[4] else {
-			return XCTFail("`configurePlaceholder` must be invocked")
-		}
-
+	func testStopLoading() {
 		// Act
-		model?.action?()
+		sut.stopLoading()
 
 		// Assert
-		guard case let .configurePlaceholder(model) = view.invocations[5] else {
-			return XCTFail("`configurePlaceholder` must be invocked")
-		}
-		XCTAssertNil(model)
-
-		guard case .startProgressAnimation = view.invocations[6] else {
-			return XCTFail("`startProgressAnimation` must be invocked")
-		}
-
-		let _ = await sut.loadingTask?.result
-
-		guard case .stopProgressAnimation = view.invocations[7] else {
+		guard case .stopProgressAnimation = view.invocations[0] else {
 			return XCTFail("`stopProgressAnimation` must be invocked")
 		}
-
-		guard case .load = view.invocations[8] else {
-			return XCTFail("`load` must be invocked")
-		}
-
-		guard case .configurePlaceholder = view.invocations[9] else {
-			return XCTFail("`configurePlaceholder` must be invocked")
-		}
 	}
-
 }
 
 // MARK: - Helpers
 extension ThreadDetailScreenPresenterTests {
 
-	typealias CHThreadPayload = CHThreadDetailResponse.CHThreadPayload
-	typealias CHPost = CHThreadDetailResponse.CHPost
+	typealias PostModel = ThreadDetailScreen.PostModel
 
-	func makeThreadDetailResponse() -> CHThreadDetailResponse {
-		let posts: [CHPost] = [makePost(num: 0),
-							   makePost(num: 1),
-							   makePost(num: 2),
-							   makePost(num: 3)]
-		let payload = CHThreadPayload(posts: posts)
-		return .init(filesCount: 20,
-					 isClosed: 0,
-					 postsCount: 120,
-					 threadPayload: [payload])
+	func makeModels() -> [PostModel] {
+		return (0...3).map { makePostModel(id: $0) }
 	}
 
-	func makePost(num: Int) -> CHPost {
-		return .init(num: num,
-					 parent: 3123123,
-					 board: "news",
-					 timestamp: 12441414,
-					 date: "10-10-23",
-					 views: 101,
-					 name: "post",
-					 comment: "It is my first post")
-	}
-
-	func makePayload(boardIdentifier: String, boardName: String, thread: Int) -> ThreadDetailScreen.Payload {
-		return .init(boardIdentifier: boardIdentifier,
-					 boardName: boardName,
-					 thread: thread)
+	func makePostModel(id: Int) -> PostModel {
+		let body = UUID().uuidString
+		return PostModel(id: id,
+						 likes: 0,
+						 dislikes: 0,
+						 body: body,
+						 formattedBody: .init(string: body),
+						 linkAction: { _ in },
+						 date: .now)
 	}
 }

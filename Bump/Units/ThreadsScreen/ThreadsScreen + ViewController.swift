@@ -64,7 +64,7 @@ extension ThreadsScreen {
 		// MARK: - UI-Properties
 
 		lazy var collectionView: UICollectionView = {
-			var configuration = UICollectionLayoutListConfiguration(appearance: .plain)
+			var configuration = UICollectionLayoutListConfiguration(appearance: .sidebarPlain)
 			configuration.headerMode = .none
 			let layout = UICollectionViewCompositionalLayout.list(using: configuration)
 			let refreshControl = UIRefreshControl(frame: .zero, primaryAction: UIAction(handler: { [weak self] action in

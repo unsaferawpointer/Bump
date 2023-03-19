@@ -70,11 +70,16 @@ extension ThreadDetailScreen {
 			return view
 		}()
 
-		lazy var body: UILabel = {
-			let view = UILabel()
-			view.numberOfLines = 0
+		lazy var body: UITextView = {
+			let view = UITextView()
+			view.backgroundColor = .clear
 			view.textAlignment = .natural
-			view.lineBreakMode = .byTruncatingTail
+			view.isScrollEnabled = false
+			view.isSelectable = true
+			view.isUserInteractionEnabled = true
+			view.isEditable = false
+			view.delegate = self
+			view.tintColor = .orange
 			return view
 		}()
 
@@ -120,7 +125,18 @@ extension ThreadDetailScreen.Cell {
 		numberLabel.text = "#\(configuration.number)"
 		dislikesLabel.title = "\(configuration.likes)"
 		likesLabel.title = "\(configuration.dislikes)"
-		body.text = configuration.body
+		body.attributedText = configuration.formattedBody
 		dateLabel.text = dateFormatter.string(from: configuration.date)
+	}
+}
+
+// MARK: - UITextViewDelegate
+extension ThreadDetailScreen.Cell: UITextViewDelegate {
+
+	func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
+		DispatchQueue.main.async { [weak self] in
+			(self?.configuration as? ThreadDetailScreen.CellConfiguration)?.linkAction?(URL)
+		}
+		return false
 	}
 }

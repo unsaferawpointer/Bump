@@ -10,26 +10,32 @@ import UIKit
 /// Unit of the boards screen
 struct BoardsScreen { }
 
-// MARK: - ViewRepresentable
-extension BoardsScreen: ViewRepresentable {
+/// Interface of the boards unit delegate
+protocol BoardsScreenOutput: AnyObject {
+	func unitInvockedAction(_ action: BoardsScreen.Action)
+}
 
-	func toPresent() -> UIViewController {
-		return BoardsScreen.ViewController { viewController in
-			let presenter = Presenter()
+// MARK: - Public interface
+extension BoardsScreen {
+
+	static func makeScreen(output: BoardsScreenOutput) -> UIViewController {
+		return ViewController { viewController in
+			let presenter = Presenter(output: output)
 			let interactor = Interactor()
 			presenter.interactor = interactor
 			viewController.presenter = presenter
 			presenter.view = viewController
 		}
 	}
+
 }
 
-/// Interface of the BoardsScreen unit
-protocol BoardsScreenOutput {
+// MARK: - Nested data structs
+extension BoardsScreen {
 
-	/// User select board
-	///
-	/// - Parameters:
-	///    - identifier: Identifier of the selected board
-	func userSelectBoard(identifier: String)
+	/// Output actions
+	enum Action {
+		/// User selected the a board
+		case userSelectedBoard(_ identifier: String)
+	}
 }

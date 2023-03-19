@@ -10,18 +10,18 @@ import UIKit
 /// Unit of the threads screen
 struct ThreadsScreen { }
 
+/// Interface of the threads screen delegate
+protocol ThreadsScreenOutput: AnyObject {
+	func unitInvockedAction(_ action: ThreadsScreen.Action)
+}
+
+// MARK: - Public interface
 extension ThreadsScreen {
 
-	/// Build unit
-	///
-	/// - Parameters:
-	///    - board: Board
-	///    - output: Delegate of the ThreadsScreen unit
-	/// - Returns: Threads screen
-	func build(board: CHBoard?, output: ThreadsScreenOutput?) -> UIViewController {
-		return ThreadsScreen.ViewController { viewController in
-			let presenter = Presenter(board: board)
-			presenter.output = output
+	static func makeScreen(board: String, output: ThreadsScreenOutput) -> UIViewController {
+		return ViewController { viewController in
+			let payload = Payload(boardIdentifier: board)
+			let presenter = Presenter(payload, output: output)
 			let interactor = Interactor()
 			presenter.interactor = interactor
 			viewController.presenter = presenter
@@ -30,12 +30,10 @@ extension ThreadsScreen {
 	}
 }
 
-/// Interface of the ThreadsScreen unit
-protocol ThreadsScreenOutput {
+// MARK: - Nested data structs
+extension ThreadsScreen {
 
-	/// User select thread
-	///
-	/// - Parameters:
-	///    - identifier: Identifier of the selected thread
-	func userSelectThread(identifier: Int)
+	enum Action {
+		case userSelectedThread(board: String, thread: Int)
+	}
 }

@@ -69,16 +69,4 @@ extension BoardsScreenInteractorTests {
 		var emptyCategory: String = ""
 	}
 
-	final class BoardsScreenOutputMock: BoardsScreenOutput {
-
-		var invocations: [Action] = []
-
-		func userSelectBoard(identifier: String) {
-			invocations.append(.userSelectBoard(identifier: identifier))
-		}
-
-		enum Action {
-			case userSelectBoard(identifier: String)
-		}
-	}
 }

@@ -5,25 +5,38 @@
 //  Created by Anton Cherkasov on 26.02.2023.
 //
 
+import Foundation
 @testable import Bump
 
 final class ThreadDetailScreenInteractorMock {
 
-	var threadDetailResponseStub: CHThreadDetailResponse? = nil
+	var invocations: [Action] = []
 
-	var error: Error?
 }
 
 // MARK: - ThreadDetailScreenInteractor
 extension ThreadDetailScreenInteractorMock: ThreadDetailScreenInteractor {
 
-	func fetchThreads(for board: String, thread: Int) async -> Result<CHThreadDetailResponse, Error> {
-		guard let error else {
-			guard let response = threadDetailResponseStub else {
-				fatalError("Please, setup response stub")
-			}
-			return .success(response)
-		}
-		return .failure(error)
+	func fetchThreads() {
+		invocations.append(.fetchThreads)
+	}
+
+	func performTransition(to link: URL) {
+		invocations.append(.performTransition(link: link))
+	}
+
+	func cancelFetching() {
+		invocations.append(.cancelFetching)
+	}
+
+}
+
+// MARK: - Nested data structs
+extension ThreadDetailScreenInteractorMock {
+
+	enum Action {
+		case fetchThreads
+		case performTransition(link: URL)
+		case cancelFetching
 	}
 }

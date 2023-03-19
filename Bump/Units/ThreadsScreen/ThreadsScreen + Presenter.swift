@@ -12,14 +12,14 @@ extension ThreadsScreen {
 	/// ThreadsScreen presenter
 	final class Presenter {
 
-		var board: CHBoard? {
+		var payload: Payload? {
 			didSet {
-				guard oldValue?.id != board?.id else {
-					return
-				}
+				view?.configure(title: payload?.boardIdentifier ?? "")
 				refreshData()
 			}
 		}
+
+		var threads: [CHThreadsResponse.CHThread] = []
 
 		// MARK: - DI
 
@@ -31,7 +31,7 @@ extension ThreadsScreen {
 
 		var interactor: ThreadsScreenInteractor?
 
-		var output: ThreadsScreenOutput?
+		weak var output: ThreadsScreenOutput?
 
 		/// Only for testing
 		private (set) var loadingTask: Task<Void, Never>?
@@ -43,8 +43,8 @@ extension ThreadsScreen {
 		/// - Parameters:
 		///    - board: Selected board
 		///    - output: Output of the unit
-		init(board: CHBoard? = nil, output: ThreadsScreenOutput? = nil) {
-			self.board = board
+		init(_ payload: Payload?, output: ThreadsScreenOutput) {
+			self.payload = payload
 			self.output = output
 		}
 	}
@@ -57,7 +57,7 @@ extension ThreadsScreen.Presenter: ThreadsScreenViewOutput {
 		guard case .didLoad = state else {
 			return
 		}
-		view?.configure(title: board?.name ?? "")
+		view?.configure(title: payload?.boardIdentifier ?? "")
 		fetchThreads { [weak view] in
 			view?.startProgressAnimation()
 		} postAction: { [weak view] in
@@ -67,7 +67,14 @@ extension ThreadsScreen.Presenter: ThreadsScreenViewOutput {
 	}
 
 	func didSelect(_ identifier: Int) {
-		output?.userSelectThread(identifier: identifier)
+		let thread = threads.first(where: { thread in
+			thread.num == identifier
+		})
+
+		guard let thread else {
+			return
+		}
+		output?.unitInvockedAction(.userSelectedThread(board: thread.board, thread: identifier))
 	}
 
 	func refreshData() {
@@ -86,11 +93,12 @@ extension ThreadsScreen.Presenter {
 	}
 
 	func makeSnapshot(_ response: CHThreadsResponse) -> Snapshot {
-		let threads = response.threads
+		self.threads = response.threads
 			.sorted { lhs, rhs in
 				lhs.timestamp > rhs.timestamp
 			}
-			.map { thread in
+
+		let models = threads.map { thread in
 				CellModel(id: thread.num,
 						  title: thread.subject ?? "",
 						  replies: thread.postsCount ?? 0,
@@ -99,7 +107,7 @@ extension ThreadsScreen.Presenter {
 
 		var snapshot = NSDiffableDataSourceSnapshot<String, ThreadsScreen.CellModel>()
 		snapshot.appendSections([""])
-		snapshot.appendItems(threads, toSection: "")
+		snapshot.appendItems(models, toSection: "")
 		return snapshot
 	}
 
@@ -109,7 +117,7 @@ extension ThreadsScreen.Presenter {
 			return
 		}
 
-		guard let boardIdentifier = board?.id else {
+		guard let boardIdentifier = payload?.boardIdentifier else {
 			view?.load(.init())
 			let model = makeModel(for: Error.emptySelection)
 			view?.configurePlaceholder(model: model)

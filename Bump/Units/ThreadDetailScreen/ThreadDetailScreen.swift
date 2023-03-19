@@ -5,32 +5,25 @@
 //  Created by Anton Cherkasov on 11.03.2023.
 //
 
-import UIKit
+import Foundation
 
 /// Unit of the posts screen
 struct ThreadDetailScreen { }
 
-/// Interface of the posts screen builder
-protocol ThreadDetailScreenBuilder {
+/// Delegate of the posts screen unit
+protocol ThreadDetailScreenOutput: AnyObject {
 
+	/// User tapped on link in the post cell
+	///
 	/// - Parameters:
-	///    - payload: Payload of the unit
-	/// - Returns: Screen of the posts
-	func build(_ payload: ThreadDetailScreen.Payload) -> UIViewController
-}
+	///    - link: Link in the post text
+	func userTappedOnLink(_ link: URL)
 
-// MARK: - ThreadDetailScreenBuilder
-extension ThreadDetailScreen: ThreadDetailScreenBuilder {
-
-	func build(_ payload: ThreadDetailScreen.Payload) -> UIViewController {
-		return ThreadDetailScreen.ViewController { viewController in
-			let presenter = Presenter(payload)
-			let interactor = Interactor()
-			presenter.interactor = interactor
-			viewController.presenter = presenter
-			presenter.view = viewController
-		}
-	}
+	/// Perform transition to endpoint
+	///
+	/// - Parameters:
+	///    - endpoint: Destination
+	func performEndpoint(_ endpoint: DeeplinkEndpoint)
 }
 
 // MARK: - Nested data structs
@@ -39,9 +32,7 @@ extension ThreadDetailScreen {
 	/// Payload of the unit
 	struct Payload: Equatable{
 
-		var boardIdentifier: String
-
-		var boardName: String
+		var board: String
 
 		var thread: Int
 	}

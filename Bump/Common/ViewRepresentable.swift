@@ -2,12 +2,30 @@
 //  ViewRepresentable.swift
 //  Bump
 //
-//  Created by Anton Cherkasov on 24.02.2023.
+//  Created by Anton Cherkasov on 26.03.2023.
 //
 
 import UIKit
 
-/// Ability to be present as UIViewController
+/// Ability to be present as ViewController
 protocol ViewRepresentable {
-	func toPresent() -> UIViewController
+
+	/// Identifier
+	var id: AnyHashable { get }
+
+	/// View controller
+	var toPresent: UIViewController { get }
+
+}
+
+// MARK: - ViewRepresentable
+extension UIViewController: ViewRepresentable {
+
+	var id: AnyHashable {
+		return ObjectIdentifier(self)
+	}
+
+	var toPresent: UIViewController {
+		return self
+	}
 }

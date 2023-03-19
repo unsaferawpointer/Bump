@@ -23,3 +23,11 @@ final class NetworkServiceMock: NetworkServiceProtocol {
 		return response
 	}
 }
+
+// MARK: - Helpers
+extension NetworkServiceMock {
+
+	func addStub<T: Request, Response>(for type: T.Type, response: Response) where Response == T.Response {
+		responsesStorage[ObjectIdentifier(type)] = response
+	}
+}

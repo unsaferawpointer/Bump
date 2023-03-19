@@ -17,8 +17,6 @@ final class ThreadDetailScreenViewControllerMock {
 // MARK: - ThreadDetailScreenViewController
 extension ThreadDetailScreenViewControllerMock: ThreadDetailScreenViewController {
 
-	typealias Snapshot = NSDiffableDataSourceSnapshot<String, ThreadDetailScreen.CellModel>
-
 	func startProgressAnimation() {
 		invocations.append(.startProgressAnimation)
 	}
@@ -28,17 +26,16 @@ extension ThreadDetailScreenViewControllerMock: ThreadDetailScreenViewController
 	}
 
 	func configure(title: String) {
-		invocations.append(.configure(title: title))
+		invocations.append(.configureTitle(title))
 	}
 
-	func load(_ snapshot: NSDiffableDataSourceSnapshot<String, ThreadDetailScreen.CellModel>) {
-		invocations.append(.load(snapshot))
+	func configure(snapshot: Snapshot) {
+		invocations.append(.configureSnapshot(snapshot))
 	}
 
-	func configurePlaceholder(model: ZeroViewModel?) {
-		invocations.append(.configurePlaceholder(model))
+	func scrollTo(postNumber: Int) {
+		invocations.append(.scrollTo(postNumber: postNumber))
 	}
-
 }
 
 // MARK: - Nested data structs
@@ -47,8 +44,8 @@ extension ThreadDetailScreenViewControllerMock {
 	enum Action {
 		case startProgressAnimation
 		case stopProgressAnimation
-		case configure(title: String)
-		case load(_ snapshot: Snapshot)
-		case configurePlaceholder(_ model: ZeroViewModel?)
+		case configureTitle(_ title: String)
+		case configureSnapshot(_ snapshot: Snapshot)
+		case scrollTo(postNumber: Int)
 	}
 }

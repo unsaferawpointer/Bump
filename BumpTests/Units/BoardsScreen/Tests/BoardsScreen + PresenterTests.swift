@@ -18,11 +18,11 @@ final class BoardsScreenPresenterTests: XCTestCase {
 
 	var interactor: BoardsScreenInteractorMock!
 
-	var output: BoardsScreenOutputMock!
+	var output: BoardsScreenOutputSpy!
 
 	override func setUpWithError() throws {
 
-		output = BoardsScreenOutputMock()
+		output = BoardsScreenOutputSpy()
 
 		sut = BoardsScreen.Presenter(output: output)
 
@@ -124,12 +124,19 @@ extension BoardsScreenPresenterTests {
 	}
 
 	func testDidSelect() async throws {
+		// Arrange
+		sut = BoardsScreen.Presenter(output: output)
 
 		// Act
 		sut.didSelect("news")
 
 		// Assert
-		guard case let .userSelectBoard(identifier) = output.invocations[0] else {
+
+		guard case let .unitInvockedAction(action) = output.invocations[0] else {
+			return XCTFail("`unitInvockedAction` must be invocked")
+		}
+
+		guard case let .userSelectedBoard(identifier) = action else {
 			return XCTFail("`userSelectBoard` must be invocked")
 		}
 
@@ -161,16 +168,21 @@ extension BoardsScreenPresenterTests {
 		var emptyCategory: String = ""
 	}
 
-	final class BoardsScreenOutputMock: BoardsScreenOutput {
+}
+
+// MARK: - Mocks
+extension BoardsScreenPresenterTests {
+
+	final class BoardsScreenOutputSpy: BoardsScreenOutput {
 
 		var invocations: [Action] = []
 
-		func userSelectBoard(identifier: String) {
-			invocations.append(.userSelectBoard(identifier: identifier))
+		enum Action {
+			case unitInvockedAction(_ action: BoardsScreen.Action)
 		}
 
-		enum Action {
-			case userSelectBoard(identifier: String)
+		func unitInvockedAction(_ action: BoardsScreen.Action) {
+			invocations.append(.unitInvockedAction(action))
 		}
 	}
 }
