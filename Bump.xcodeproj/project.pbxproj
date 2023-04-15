@@ -88,6 +88,7 @@
 		4CB024E629D37C0C00FE34E2 /* ThreadDetailScreenInteractorOutputMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB024E529D37C0C00FE34E2 /* ThreadDetailScreenInteractorOutputMock.swift */; };
 		4CB024E829D3813B00FE34E2 /* DeeplinkManagerStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB024E729D3813B00FE34E2 /* DeeplinkManagerStub.swift */; };
 		4CB024EA29D3831A00FE34E2 /* ThreadDetailScreenOutputSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB024E929D3831A00FE34E2 /* ThreadDetailScreenOutputSpy.swift */; };
+		4CB024EE29D6114000FE34E2 /* TextProcessorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB024ED29D6114000FE34E2 /* TextProcessorTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -193,6 +194,7 @@
 		4CB024E529D37C0C00FE34E2 /* ThreadDetailScreenInteractorOutputMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadDetailScreenInteractorOutputMock.swift; sourceTree = "<group>"; };
 		4CB024E729D3813B00FE34E2 /* DeeplinkManagerStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeeplinkManagerStub.swift; sourceTree = "<group>"; };
 		4CB024E929D3831A00FE34E2 /* ThreadDetailScreenOutputSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadDetailScreenOutputSpy.swift; sourceTree = "<group>"; };
+		4CB024ED29D6114000FE34E2 /* TextProcessorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextProcessorTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -401,6 +403,7 @@
 		4C8339272996B7C300ABDAF2 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				4CB024EC29D6112300FE34E2 /* TextProcessor */,
 				4C8339282996B7CC00ABDAF2 /* Networking */,
 			);
 			path = Services;
@@ -615,6 +618,14 @@
 			path = Flows;
 			sourceTree = "<group>";
 		};
+		4CB024EC29D6112300FE34E2 /* TextProcessor */ = {
+			isa = PBXGroup;
+			children = (
+				4CB024ED29D6114000FE34E2 /* TextProcessorTests.swift */,
+			);
+			path = TextProcessor;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -817,6 +828,7 @@
 				4CB0249C29BFB7D300FE34E2 /* ThreadDetailScreenInteractorMock.swift in Sources */,
 				4CB0246A29B12A7200FE34E2 /* ThreadsScreenPlaceholdersFactoryMock.swift in Sources */,
 				4C83392E2996CB3F00ABDAF2 /* URLSessionFacadeSpy.swift in Sources */,
+				4CB024EE29D6114000FE34E2 /* TextProcessorTests.swift in Sources */,
 				4CB024E629D37C0C00FE34E2 /* ThreadDetailScreenInteractorOutputMock.swift in Sources */,
 				4CB0245A29AB78B600FE34E2 /* ThreadsScreenViewControllerMock.swift in Sources */,
 				4CB024EA29D3831A00FE34E2 /* ThreadDetailScreenOutputSpy.swift in Sources */,

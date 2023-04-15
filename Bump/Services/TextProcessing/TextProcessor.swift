@@ -8,31 +8,39 @@
 import Foundation
 import UIKit
 
+/// Style of the text
+struct TextStyle {
+	var color: UIColor
+	var font: UIFont
+}
+
 struct Theme {
-	var linkColor: UIColor
-	var quoteColor: UIColor
+	var defaultStyle: TextStyle = .init(color: .label, font: .systemFont(ofSize: 16.0))
+	var quoteStyle: TextStyle = .init(color: .secondaryLabel, font: .italicSystemFont(ofSize: 16.0))
 }
 
 extension Theme {
-
-	static var post = Theme(linkColor: .orange, quoteColor: .secondaryLabel)
+	static var post = Theme()
 }
 
 /// Interface of the text processing of the post text
 protocol TextProcessorProtocol {
+	/// Convert HTML - text to AttributedString
 	func formatted(_ htmlText: String) async -> NSMutableAttributedString
 }
 
+/// Класс обработки текста
 final class TextProcessor {
 
-	var theme: Theme = .post
+	private (set) var theme = Theme()
 
-	var fontSize: CGFloat = 16.0
-
-	lazy var italicFont: UIFont = UIFont.italicSystemFont(ofSize: fontSize)
-
-	lazy var baseFont: UIFont = UIFont.systemFont(ofSize: fontSize)
-
+	/// Initialization
+	///
+	/// - Parameters:
+	///    - theme: Стиль текста
+	init(theme: Theme = .post) {
+		self.theme = theme
+	}
 
 }
 
@@ -47,10 +55,6 @@ extension TextProcessor: TextProcessorProtocol {
 
 		formatted.beginEditing()
 		processText(formatted)
-		enumerateLinks(in: formatted) { range, url in
-			formatted.addAttribute(.foregroundColor, value: theme.linkColor, range: range)
-			formatted.addAttribute(.link, value: url, range: range)
-		}
 		processQuote(attributedString: formatted)
 		formatted.endEditing()
 
@@ -62,18 +66,10 @@ extension TextProcessor: TextProcessorProtocol {
 extension TextProcessor {
 
 	func processText(_ attributedString: NSMutableAttributedString) {
-		attributedString.addAttribute(.font, value: baseFont, range: attributedString.fullRange)
-		attributedString.addAttribute(.foregroundColor, value: UIColor.label, range: attributedString.fullRange)
-	}
-
-	func enumerateLinks(in attributedString: NSMutableAttributedString, actionBlock: (NSRange, URL) -> Void) {
-		let fullRange = NSRange(location: 0, length: attributedString.length)
-		attributedString.enumerateAttribute(.link, in: fullRange, options: [.reverse]) { value, range, stop in
-			guard let url = value as? URL else {
-				return
-			}
-			actionBlock(range, url)
-		}
+		let font = theme.defaultStyle.font
+		let color = theme.defaultStyle.color
+		attributedString.addAttribute(.font, value: font, range: attributedString.fullRange)
+		attributedString.addAttribute(.foregroundColor, value: color, range: attributedString.fullRange)
 	}
 
 	func processQuote(attributedString: NSMutableAttributedString) {
@@ -83,10 +79,13 @@ extension TextProcessor {
 
 		let fullRange = NSRange(location: 0, length: attributedString.length)
 
+		let color = theme.quoteStyle.color
+		let font = theme.quoteStyle.font
+
 		let matches = regex.matches(in: attributedString.string, options: [], range: fullRange)
 		for match in matches {
-			attributedString.addAttribute(.foregroundColor, value: theme.quoteColor, range: match.range)
-			attributedString.addAttribute(.font, value: italicFont, range: match.range)
+			attributedString.addAttribute(.foregroundColor, value: color, range: match.range)
+			attributedString.addAttribute(.font, value: font, range: match.range)
 		}
 	}
 
@@ -94,7 +93,6 @@ extension TextProcessor {
 		guard let data = htmlText.data(using: .utf8) else {
 			return NSAttributedString()
 		}
-
 		do {
 			return try NSAttributedString(data: data,
 										  options: [.documentType : NSAttributedString.DocumentType.html,
