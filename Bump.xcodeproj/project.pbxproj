@@ -323,6 +323,7 @@
 		4C8338DE2995774500ABDAF2 = {
 			isa = PBXGroup;
 			children = (
+				4C8A316D2998EE6300A68038 /* README.md */,
 				4C8338E92995774500ABDAF2 /* Bump */,
 				4C8339032995774700ABDAF2 /* BumpTests */,
 				4C83390D2995774700ABDAF2 /* BumpUITests */,
@@ -343,7 +344,6 @@
 		4C8338E92995774500ABDAF2 /* Bump */ = {
 			isa = PBXGroup;
 			children = (
-				4C8A316D2998EE6300A68038 /* README.md */,
 				4C8338EA2995774500ABDAF2 /* AppDelegate.swift */,
 				4C8338EC2995774500ABDAF2 /* SceneDelegate.swift */,
 				4C8338F62995774600ABDAF2 /* Assets.xcassets */,
